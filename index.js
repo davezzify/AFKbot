@@ -29,7 +29,7 @@ const config = {
   host: process.env.SERVER_HOST || "3rsi_01.aternos.me",
   port: parseInt(process.env.SERVER_PORT) || 61765,
   username: process.env.BOT_USERNAME || "AFKbot",
-  version: process.env.MC_VERSION || "auto", // Auto-detect or specify version
+  version: process.env.MC_VERSION || "1.21.8", // Auto-detect or specify version
   auth: "offline", // Offline mode - no Microsoft credentials needed
 };
 
