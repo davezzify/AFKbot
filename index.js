@@ -35,8 +35,8 @@ const config = {
 
 let bot;
 let reconnectAttempts = 0;
-const maxReconnectAttempts = 10;
-const baseReconnectDelay = 5000; // 5 seconds
+const maxReconnectAttempts = 1500000;
+const baseReconnectDelay = 10000; // 10 seconds
 
 // Anti-AFK activities
 const antiAfkActivities = {
