@@ -29,7 +29,7 @@ const config = {
   host: process.env.SERVER_HOST || "3rsi_01.aternos.me",
   port: parseInt(process.env.SERVER_PORT) || 61765,
   username: process.env.BOT_USERNAME || "AFKbot",
-  version: process.env.MC_VERSION || "1.21.8", // Auto-detect or specify version
+  version: process.env.MC_VERSION || "1.20.1", // Changed from 1.21.8 to supported version
   auth: "offline", // Offline mode - no Microsoft credentials needed
 };
 
@@ -95,6 +95,8 @@ function stopAntiAfkActivities() {
 
 function startBot() {
   console.log(`🚀 Starting bot (attempt ${reconnectAttempts + 1})...`);
+  console.log(`🎯 Connecting to: ${config.host}:${config.port}`);
+  console.log(`📦 Using Minecraft version: ${config.version}`);
 
   try {
     bot = mineflayer.createBot(config);
@@ -187,6 +189,8 @@ function startBot() {
       console.log("🌐 Server appears to be offline or unreachable");
     } else if (err.message.includes("Invalid session")) {
       console.log("🔑 Authentication issue - check username/auth settings");
+    } else if (err.message.includes("unsupported protocol version")) {
+      console.log("🔄 Protocol version mismatch - try updating mineflayer or changing version");
     }
 
     handleReconnect();
@@ -242,6 +246,7 @@ function validateConfig() {
   );
   console.log(`🎯 Target: ${config.host}:${config.port}`);
   console.log(`👤 Username: ${config.username}`);
+  console.log(`📦 Minecraft Version: ${config.version}`);
   console.log("🔓 Auth mode: Offline (no Microsoft account needed)");
 }
 
